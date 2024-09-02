@@ -1,4 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+// import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-storage.js";
+
+
+import { getStorage, ref, uploadBytes, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-storage.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBjZKCdDHanbqEUyJSc0cMoZhK8IATfXVU",
@@ -12,3 +16,11 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
+
+// export {storage, ref ,uploadBytes}
+
+
+
+
+export {storage, ref ,uploadBytes, uploadBytesResumable, getDownloadURL}
