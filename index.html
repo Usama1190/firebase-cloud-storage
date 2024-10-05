@@ -8,14 +8,16 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <input type="file" name="" id="image" accept="image/">
-    <div class="loader" id="loader"></div>
-    <p id="state"></p>
+    <div class="container_wrapper">
+        <div class="image_wrapper"><img src="assets/bg-img-4.jpg" alt="background image"></div>
+        <input type="file" name="" id="image" accept="image/">
+        <div class="loader" id="loader"></div>
+        <p id="state"></p>
 
-    <button id="stop">Stop</button>
-    <button id="start">Start</button>
-    <button id="cancel">Cancel</button>
-
+        <button id="stop">Stop</button>
+        <button id="start">Start</button>
+        <button id="cancel">Cancel</button>
+    </div>
     <script type="module" src="upload.js"></script>
     <script type="module" src="firebase.js"></script>
 </body>
