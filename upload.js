@@ -251,9 +251,9 @@ import { storage, ref, uploadBytes, uploadBytesResumable, getDownloadURL } from 
 let image = document.getElementById('image');
 const upload = document.getElementById('upload');
 
-const start = document.getElementById('start');
-const stop= document.getElementById('stop');
-const cancel = document.getElementById('cancel');
+let start = document.getElementById('start');
+let stop= document.getElementById('stop');
+let cancel = document.getElementById('cancel');
 
 let loader = document.getElementById('loader');
 let state = document.getElementById('state');
@@ -261,18 +261,23 @@ let state = document.getElementById('state');
 loader.style.display = 'none';
 
 let onstate = document.getElementById('onstate');
-let form = document.getElementById('form');
 
 let uploadTask;
 
 
 const uploadFile = () => {
+    event.preventDefault();
     const files = image.files[0];
+
+    start.removeAttribute('disabled');
+    stop.removeAttribute('disabled');
+    cancel.removeAttribute('disabled');
 
     // console.log(files);
 
     // validation
     if(files.size >= 1163561) {
+        onstate.style.color = '#bb2124';
         onstate.innerText = 'file is too big!';
         
     } 
@@ -291,29 +296,38 @@ const uploadFile = () => {
             
             if(progress === 100) {
                 loader.style.display = 'none';
+                state.style.color = '#22bb33';
                 state.innerText = 'Submit Successfully!';
+                
+                onstate.style.color = '#22bb33';
                 onstate.innerText = 'Submit Successfully!';
             }
             else {
+                state.style.color = '#2A343E';
                 state.innerText = 'Upload is ' + progress + '% done';
                 loader.style.display = 'block';
             }
 
             console.log('Upload is ' + progress + '% done');
-            onstate.innerText = 'Upload is ' + progress + '% done';
+            // onstate.innerText = 'Upload is ' + progress + '% done';
 
             switch (snapshot.state) {
                 case 'paused':
-                onstate.innerText = 'Upload is paused!';
+                    loader.style.display = 'none';
+                    onstate.style.color = '#bb2124';
+                    onstate.innerText = 'Upload is paused!';
                 break;
                 case 'running':
-                onstate.innerText = 'Upload is running';
+                    loader.style.display = 'block';
+                    onstate.style.color = '#22bb33';
+                    onstate.innerText = 'Uploading...';
                 break;
             }
             }, 
             (error) => {
             // Handle unsuccessful uploads
             console.log(error);
+            onstate.style.color = '#bb2124';
             onstate.innerText = error;
             
             }, 
@@ -321,8 +335,15 @@ const uploadFile = () => {
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                 console.log('File available at', downloadURL);
                 
-                onstate.innerHTML = `<p>File available at, <a href='${downloadURL}' target='_blank'>here</a> </p>`;
+                onstate.style.color = '#2A343E';
+                onstate.innerHTML = `File available at, <a href='${downloadURL}' target='_blank' class='anchor'>here</a>`;
             });
+            loader.style.display = 'none';
+
+            start.setAttribute('disabled', '');
+            stop.setAttribute('disabled', '');
+            cancel.setAttribute('disabled', '');
+
             }
         ); 
     }
@@ -331,21 +352,32 @@ const uploadFile = () => {
 image.addEventListener('change', uploadFile);
 
 start.addEventListener('click', () => {
+    event.preventDefault();
+
     console.log('start');
-    onstate.innerText = 'start';
+    loader.style.display = 'none';
+    onstate.innerText = 'Uploading...';
     uploadTask.resume();
     
 });
 
 stop.addEventListener('click', () => {
+    event.preventDefault();
+
     console.log('stop');
-    onstate.innerText = 'stop';
+    loader.style.display = 'none';
+    onstate.style.color = '#bb2124';
+    onstate.innerText = 'paused!';
     uploadTask.pause();
 });
 
 cancel.addEventListener('click', () => {
+    event.preventDefault();
+
     console.log('cancel');
-    onstate.innerText = 'cancel';
+    loader.style.display = 'none';
+    onstate.style.color = '#bb2124';
+    onstate.innerText = 'cancel!';
     uploadTask.cancel();
 });
 
