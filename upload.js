@@ -258,7 +258,7 @@ const cancel = document.getElementById('cancel');
 let loader = document.getElementById('loader');
 let state = document.getElementById('state');
 
-loader.style.display = 'none';
+// loader.style.display = 'none';
 
 let uploadTask;
 

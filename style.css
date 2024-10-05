@@ -1,13 +1,21 @@
 :root {
   --color-1: #2A343E;
   --color-2: #B1F7FA;
+  --color-3: #ffffff;
+  --color-4: #000000;
 }
 
 /* HTML: <div class="loader"></div> */
+
+.loader_wrapper {
+  display: flex;
+  justify-content: center;
+}
+
 .loader {
     width: 60px;
     aspect-ratio: 2;
-    --_g: no-repeat radial-gradient(circle closest-side,#000 90%,#0000);
+    --_g: no-repeat radial-gradient(circle closest-side,#2A343E 90%,#0000);
     background: 
       var(--_g) 0%   50%,
       var(--_g) 50%  50%,
@@ -25,6 +33,8 @@
 body {
   padding: 0;
   margin: 0;
+  font-family: sans-serif;
+  text-align: center;
 }
 
 .bg_image {
@@ -35,21 +45,47 @@ body {
 }
 
 .form_wrapper {
-  /* border: 1px solid white; */
+  margin-top: 100px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
 }
 
 .form {
-  width: 40%;
-  /* border: 1px solid red; */
-  height: 576px;
+  /* background-color: var(--color-1); */
+  width: 50%;
+  border: 1px solid var(--color-1);
+  border-radius: 4px;
   backdrop-filter: blur(5px);
 }
 
+.heading {
+  font-size: 37px;
+  color: var(--color-1);
+  text-decoration: underline;
+}
+
 .btn {
-  padding: 8px 12px;
-  background-color: var(--color-2);
+  cursor: pointer;
+  font-weight: 700;
+  padding: 8px 20px;
+  background-color: var(--color-1);
+  border-radius: 6px;
+  border: 1px solid transparent;
+  box-shadow: 1px 2px 1px 0.2px var(--color-4);
+  transition: all 0.3s;
+  color: var(--color-3);
+  margin: 12px;
+}
+
+.btn:hover {
+  color: var(--color-1);
+  border: 1px solid var(--color-1);
+  box-shadow: none;
+  background-color: var(--color-3);
+}
+
+.btn_group {
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: center;
 }

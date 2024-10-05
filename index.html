@@ -9,23 +9,23 @@
 </head>
 <body>
     <div class="container_wrapper">
-        <div class="image_wrapper">
-            <img src="assets/bg-img-4.jpg" alt="background image" class="bg_image">
-        </div>
-
         <div class="form_wrapper">
             <form action="" class="form">
+                <h1 class="heading">Submit file on Firestore</h1>
+                
+                <br><br>
+                <input type="file" name="" id="image" accept="image/">
+                <span id="state"></span><span id=""></span><br><br>
+                
                 <div class="loader_wrapper">
                     <div class="loader" id="loader"></div>
                 </div>
-                <h1>Application Form</h1>
-
-                <input type="file" name="" id="image" accept="image/">
-                <span id="state"></span><span id=""></span><br><br>
-
-                <button id="start" class="btn">Start</button>
-                <button id="stop" class="btn">Stop</button><br><br>
-                <button id="cancel" class="btn">Cancel</button>
+                
+                <div class="btn_group">
+                    <button id="start" class="btn">Start</button>
+                    <button id="stop" class="btn">Stop</button>
+                    <button id="cancel" class="btn">Cancel</button>
+                </div>
             </form>
         </div>
     </div>
