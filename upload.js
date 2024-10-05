@@ -258,7 +258,10 @@ const cancel = document.getElementById('cancel');
 let loader = document.getElementById('loader');
 let state = document.getElementById('state');
 
-// loader.style.display = 'none';
+loader.style.display = 'none';
+
+let onstate = document.getElementById('onstate');
+let form = document.getElementById('form');
 
 let uploadTask;
 
@@ -266,11 +269,11 @@ let uploadTask;
 const uploadFile = () => {
     const files = image.files[0];
 
-    console.log(files);
+    // console.log(files);
 
     // validation
     if(files.size >= 1163561) {
-        console.log('file is too big!');
+        onstate.innerText = 'file is too big!';
         
     } 
     else {
@@ -288,7 +291,8 @@ const uploadFile = () => {
             
             if(progress === 100) {
                 loader.style.display = 'none';
-                state.innerText = '';
+                state.innerText = 'Submit Successfully!';
+                onstate.innerText = 'Submit Successfully!';
             }
             else {
                 state.innerText = 'Upload is ' + progress + '% done';
@@ -296,23 +300,28 @@ const uploadFile = () => {
             }
 
             console.log('Upload is ' + progress + '% done');
+            onstate.innerText = 'Upload is ' + progress + '% done';
+
             switch (snapshot.state) {
                 case 'paused':
-                console.log('Upload is paused');
+                onstate.innerText = 'Upload is paused!';
                 break;
                 case 'running':
-                console.log('Upload is running');
+                onstate.innerText = 'Upload is running';
                 break;
             }
             }, 
             (error) => {
             // Handle unsuccessful uploads
             console.log(error);
+            onstate.innerText = error;
             
             }, 
             () => {
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                 console.log('File available at', downloadURL);
+                
+                onstate.innerHTML = `<p>File available at, <a href='${downloadURL}' target='_blank'>here</a> </p>`;
             });
             }
         ); 
@@ -323,20 +332,21 @@ image.addEventListener('change', uploadFile);
 
 start.addEventListener('click', () => {
     console.log('start');
+    onstate.innerText = 'start';
     uploadTask.resume();
     
 });
 
 stop.addEventListener('click', () => {
     console.log('stop');
+    onstate.innerText = 'stop';
     uploadTask.pause();
-
 });
 
 cancel.addEventListener('click', () => {
     console.log('cancel');
+    onstate.innerText = 'cancel';
     uploadTask.cancel();
-
 });
 
 

@@ -10,12 +10,14 @@
 <body>
     <div class="container_wrapper">
         <div class="form_wrapper">
-            <form action="" class="form">
+            <form action="" id="form">
                 <h1 class="heading">Submit file on Firestore</h1>
                 
                 <br><br>
-                <input type="file" name="" id="image" accept="image/">
+                <input type="file" name="" id="image" accept="image/" class="file_btn">
                 <span id="state"></span><span id=""></span><br><br>
+
+                <p id="onstate"></p>
                 
                 <div class="loader_wrapper">
                     <div class="loader" id="loader"></div>
