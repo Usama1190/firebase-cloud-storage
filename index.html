@@ -9,17 +9,25 @@
 </head>
 <body>
     <div class="container_wrapper">
-        <!-- <div class="image_wrapper">
+        <div class="image_wrapper">
             <img src="assets/bg-img-4.jpg" alt="background image" class="bg_image">
-        </div> -->
+        </div>
 
-        <input type="file" name="" id="image" accept="image/">
-        <div class="loader" id="loader"></div>
-        <p id="state"></p>
+        <div class="form_wrapper">
+            <form action="" class="form">
+                <div class="loader_wrapper">
+                    <div class="loader" id="loader"></div>
+                </div>
+                <h1>Application Form</h1>
 
-        <button id="stop">Stop</button>
-        <button id="start">Start</button>
-        <button id="cancel">Cancel</button>
+                <input type="file" name="" id="image" accept="image/">
+                <span id="state"></span><span id=""></span><br><br>
+
+                <button id="start" class="btn">Start</button>
+                <button id="stop" class="btn">Stop</button><br><br>
+                <button id="cancel" class="btn">Cancel</button>
+            </form>
+        </div>
     </div>
     <script type="module" src="upload.js"></script>
     <script type="module" src="firebase.js"></script>
