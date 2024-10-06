@@ -264,14 +264,28 @@ let onstate = document.getElementById('onstate');
 
 let uploadTask;
 
+start.innerText = 'Start';
+
+start.disabled = true;
+stop.disabled = true;
+cancel.disabled = true;
+
+start.style.opacity = '0.5';
+stop.style.opacity = '0.5';
+cancel.style.opacity = '0.5';
+
 
 const uploadFile = () => {
     event.preventDefault();
     const files = image.files[0];
 
-    start.removeAttribute('disabled');
-    stop.removeAttribute('disabled');
-    cancel.removeAttribute('disabled');
+    start.disabled = false;
+    stop.disabled = false;
+    cancel.disabled = false;
+
+    start.style.opacity = '1';
+    stop.style.opacity = '1';
+    cancel.style.opacity = '1';
 
     // console.log(files);
 
@@ -297,10 +311,10 @@ const uploadFile = () => {
             if(progress === 100) {
                 loader.style.display = 'none';
                 state.style.color = '#22bb33';
-                state.innerText = 'Submit Successfully!';
+                state.innerText = 'Upload Successfully!';
                 
                 onstate.style.color = '#22bb33';
-                onstate.innerText = 'Submit Successfully!';
+                onstate.innerText = 'Upload Successfully!';
             }
             else {
                 state.style.color = '#2A343E';
@@ -315,7 +329,8 @@ const uploadFile = () => {
                 case 'paused':
                     loader.style.display = 'none';
                     onstate.style.color = '#bb2124';
-                    onstate.innerText = 'Upload is paused!';
+                    onstate.innerText = 'Paused!';
+                    start.innerText = 'Restart';
                 break;
                 case 'running':
                     loader.style.display = 'block';
@@ -328,7 +343,7 @@ const uploadFile = () => {
             // Handle unsuccessful uploads
             console.log(error);
             onstate.style.color = '#bb2124';
-            onstate.innerText = error;
+            onstate.innerText = 'Cancel uploading!';
             
             }, 
             () => {
@@ -340,9 +355,13 @@ const uploadFile = () => {
             });
             loader.style.display = 'none';
 
-            start.setAttribute('disabled', '');
-            stop.setAttribute('disabled', '');
-            cancel.setAttribute('disabled', '');
+            start.disabled = true;
+            stop.disabled = true;
+            cancel.disabled = true;
+
+            start.style.opacity = '0.5';
+            stop.style.opacity = '0.5';
+            cancel.style.opacity = '0.5';
 
             }
         ); 
@@ -356,7 +375,7 @@ start.addEventListener('click', () => {
 
     console.log('start');
     loader.style.display = 'none';
-    onstate.innerText = 'Uploading...';
+    onstate.innerText = 'starting...';
     uploadTask.resume();
     
 });

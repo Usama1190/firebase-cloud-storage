@@ -62,8 +62,13 @@ body {
 
 .heading {
   font-size: 37px;
+  font-weight: 400;
   color: var(--color-1);
   text-decoration: underline;
+}
+
+.heading2 {
+  color: var(--color-1);
 }
 
 .btn {
@@ -98,4 +103,21 @@ body {
 
 .anchor:hover {
   opacity: 0.5;
+}
+
+[type="file"] {
+  width: 50%;
+  min-width: 14ch;
+}
+
+[type="file"]::file-selector-button {
+  width: 100%;
+  margin-inline-end: 0;
+  padding: 0.6rem;
+  background-color: lightblue;
+  color: var(--color-1);
+  border: none;
+  font-weight: 900;
+  border-radius: 0;
+  text-transform: uppercase;
 }
